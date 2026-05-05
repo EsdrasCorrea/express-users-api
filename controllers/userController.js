@@ -1,6 +1,6 @@
 const userService = require('../services/userService');
 
-function getUsers ( req, res ) {
+function getUsers ( req, res, next ) {
     const users = userService.getAllUsers();
 
     return res.status(200).json(users);
@@ -19,10 +19,6 @@ function getUserById(req, res) {
 
 function createUser(req, res) {
     const {name, email} = req.body;
-
-    if(!name || !email) {
-        return res.status(400).json({message: 'Name and email is required'});
-    }
 
     const newUser = userService.createUser({name, email});
 
