@@ -1,44 +1,24 @@
-const users = [
-    {
-        id : 1,
-        nome : 'Jonh Doe',
-        email : 'jonh@email.com'
-    },
-    {
-        id : 2,
-        nome : 'Jane Doe',
-        email : 'jane@email.com'
-    }
-];
+const userRepository = require('../repositories/userRepository');
 
 function getAllUsers() {
-    return users;
+  return userRepository.findAll();
 }
 
 function getUserById(id) {
-    return users.find((user)=> user.id === id)
+  return userRepository.findById(id);
 }
 
 function createUser(userData) {
-    const newUser = {
-        id: users.length + 1,
-        ...userData
-    }
-    users.push(newUser);
-
-    return newUser;
+  return userRepository.create(userData);
 }
 
 function deleteUser(id) {
-    const index = users.findIndex((user) => user.id === id)
-    if(index === -1){
-        return false;
-    }
-
-    users.splice(index, 1);
-    return true;
+  return userRepository.remove(id);
 }
 
 module.exports = {
-    getAllUsers, getUserById, createUser, deleteUser
-} 
+  getAllUsers,
+  getUserById,
+  createUser,
+  deleteUser,
+};

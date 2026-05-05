@@ -1,4 +1,4 @@
-function validateEmail(req, res, next){
+function validateUser(req, res, next){
     const {name, email} = req.body;
 
     if(!name || !email) {
@@ -16,4 +16,4 @@ function validateEmail(req, res, next){
     next();
 }
 
-module.exports = validateEmail;
+module.exports = validateUser;
